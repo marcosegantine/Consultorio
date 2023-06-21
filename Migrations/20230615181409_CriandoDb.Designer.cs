@@ -10,8 +10,8 @@ using ProjectDoctor.Context;
 namespace ProjectDoctor.Migrations
 {
     [DbContext(typeof(ProjectDoctorContext))]
-    [Migration("20230614125312_CreatingDb")]
-    partial class CreatingDb
+    [Migration("20230615181409_CriandoDb")]
+    partial class CriandoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,9 +51,7 @@ namespace ProjectDoctor.Migrations
                         .HasColumnName("id_profissional");
 
                     b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasDefaultValue(1)
                         .HasColumnName("status");
 
                     b.HasKey("Id");

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ProjectDoctor.Migrations
 {
-    public partial class CreatingDb : Migration
+    public partial class CriandoDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,7 +59,7 @@ namespace ProjectDoctor.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     data_horario = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    status = table.Column<int>(type: "integer", nullable: false, defaultValue: 1),
+                    status = table.Column<int>(type: "integer", nullable: false),
                     preco = table.Column<decimal>(type: "numeric(7,2)", precision: 7, scale: 2, nullable: false),
                     id_paciente = table.Column<int>(type: "integer", nullable: false),
                     id_especialidade = table.Column<int>(type: "integer", nullable: false),

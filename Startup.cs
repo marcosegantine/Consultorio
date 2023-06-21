@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProjectDoctor.Context;
+using ProjectDoctor.Repository;
+using ProjectDoctor.Repository.Interfaces;
 using ProjectDoctor.Services;
 using System;
 using System.Collections.Generic;
@@ -30,12 +32,18 @@ namespace ProjectDoctor
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IBaseRepository, BaseRepository>();
+            services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddDbContext<ProjectDoctorContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("Default"),
                     assembly => assembly.MigrationsAssembly(typeof(ProjectDoctorContext).Assembly.FullName));
-                
+
             });
             services.AddSwaggerGen(c =>
             {
