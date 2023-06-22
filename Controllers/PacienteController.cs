@@ -59,8 +59,26 @@ namespace ProjectDoctor.Controllers
             _repository.Add(pacienteAdd);
 
             return await _repository.SaveChangesAsync()
-                ? Ok("Paciente adicionado como sucesso!")
+                ? Ok("Paciente adicionado com sucesso!")
                 : BadRequest("Erro ao adicionar o paciente");
         }
+
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> Put(int id, PacienteUpdateDto paciente)
+        {
+            if (id <= 0) return BadRequest("Usuarionão informado");
+
+            var pacienteDb = await _repository.GetPacientesByIdAsync(id);
+
+            var pacienteAtualizar = _mapper.Map(paciente, pacienteDb);
+
+            _repository.Update(pacienteAtualizar);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Paciente atualizado com sucesso!")
+                : BadRequest("Erro ao atualizadar o paciente");
+        }
+
     }
 }

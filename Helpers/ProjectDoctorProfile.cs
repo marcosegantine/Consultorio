@@ -6,6 +6,7 @@ namespace ProjectDoctor.Helpers
 {
     public class ProjectDoctorProfile : Profile
     {
+
         public ProjectDoctorProfile()
         {
             CreateMap<Paciente, PacienteDetailsDto>().ReverseMap(); //faz um mapeamento reverso
@@ -18,6 +19,9 @@ namespace ProjectDoctor.Helpers
                 .ForMember(dest => dest.Profissional, opt => opt.MapFrom(src => src.Profissional.Nome));
 
             CreateMap<PacienteAddDto, Paciente>();
+
+            CreateMap<PacienteUpdateDto, Paciente>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); //verifica e altera apenas os valores não nullos que forem passados
         }
     }
 }
