@@ -21,7 +21,7 @@ namespace ProjectDoctor.Helpers
             CreateMap<PacienteAddDto, Paciente>();
 
             CreateMap<PacienteUpdateDto, Paciente>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); //verifica e altera apenas os valores não nullos que forem passados
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); //verifica e altera apenas os valores não nullos que forem passados 
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProjectDoctor.Models.Dtos;
 using ProjectDoctor.Models.Entities;
@@ -78,6 +79,22 @@ namespace ProjectDoctor.Controllers
             return await _repository.SaveChangesAsync()
                 ? Ok("Paciente atualizado com sucesso!")
                 : BadRequest("Erro ao atualizadar o paciente");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest("Paciente não encontrado");
+
+            var pacienteToDelete = await _repository.GetPacientesByIdAsync(id);
+
+            if (pacienteToDelete == null) return NotFound("Paciente não econtrado");
+
+            _repository.Delete(pacienteToDelete);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Paciente Deletado com sucesso") 
+                : BadRequest("Erro ao deletar o paciente");
         }
 
     }
