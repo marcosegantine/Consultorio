@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProjectDoctor.Models.Dtos;
 using ProjectDoctor.Models.Entities;
+using System.Linq;
 
 namespace ProjectDoctor.Helpers
 {
@@ -22,6 +23,15 @@ namespace ProjectDoctor.Helpers
 
             CreateMap<PacienteUpdateDto, Paciente>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null)); //verifica e altera apenas os valores não nullos que forem passados 
+
+            CreateMap<Profissional, ProfissionalDetalhesDto>()
+                .ForMember(dest => dest.TotalConsultas, opt => opt.MapFrom(src => src.Consultas.Count()))
+                .ForMember(dest => dest.Especialidades, opt => opt.MapFrom(src => src.Especialidades.Select(x => x.Nome).ToArray()));
+
+            CreateMap<ProfissionalAdicionarDto, Profissional>();
+
+            CreateMap<ProfissiolAtualizarDto, Profissional>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
