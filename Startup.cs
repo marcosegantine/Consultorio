@@ -40,6 +40,7 @@ namespace ProjectDoctor
             services.AddScoped<IBaseRepository, BaseRepository>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
+            services.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
             services.AddDbContext<ProjectDoctorContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("Default"),

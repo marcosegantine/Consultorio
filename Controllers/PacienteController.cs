@@ -43,8 +43,6 @@ namespace ProjectDoctor.Controllers
 
             var retornoPaciente = _mapper.Map<PacienteDetailsDto>(paciente);
 
-            var pacienteTest = _mapper.Map<Paciente>(retornoPaciente);
-
             return retornoPaciente != null
                 ? Ok(retornoPaciente)
                 : BadRequest("Paciente não encontrado");
@@ -93,7 +91,7 @@ namespace ProjectDoctor.Controllers
             _repository.Delete(pacienteToDelete);
 
             return await _repository.SaveChangesAsync()
-                ? Ok("Paciente Deletado com sucesso") 
+                ? Ok("Paciente Deletado com sucesso")
                 : BadRequest("Erro ao deletar o paciente");
         }
 
