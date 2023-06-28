@@ -14,8 +14,6 @@ namespace ProjectDoctor.Controllers
             _repository = repository;
         }
 
-        public IEspecialidadeRepository Repository { get; }
-
         [HttpGet]
         public async Task<IActionResult> Get(Especialidade especialidade)
         {
