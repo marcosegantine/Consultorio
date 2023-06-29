@@ -1,6 +1,6 @@
 ﻿namespace ProjectDoctor.Models.Dtos
 {
-    public class PacienteUpdateDto
+    public class PacienteAtualizarDto
     {
         public string Nome { get; set; }
         public string Email { get; set; }

@@ -10,5 +10,6 @@ namespace ProjectDoctor.Repository.Interfaces
     {
         Task<IEnumerable<ProfissionalDto>> GetProfissionais();
         Task<Profissional> GetProfissionalById(int id);
+        Task<ProfissionalEspecialidade> GetProfissionalEspecialidade(int profissionalId, int especialidadeId);
     }
 }

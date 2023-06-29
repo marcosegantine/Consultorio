@@ -64,7 +64,7 @@ namespace ProjectDoctor.Controllers
 
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> Put(int id, PacienteUpdateDto paciente)
+        public async Task<IActionResult> Put(int id, PacienteAtualizarDto paciente)
         {
             if (id <= 0) return BadRequest("Usuarionão informado");
 

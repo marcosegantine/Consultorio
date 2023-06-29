@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectDoctor.Models.Entities;
+using System.Collections.Generic;
 
 namespace ProjectDoctor.Context
 {
@@ -12,6 +13,8 @@ namespace ProjectDoctor.Context
         public DbSet<Especialidade> Especialidades { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Profissional> Profissionals { get; set; }
+        public DbSet<ProfissionalEspecialidade> ProfissionaisEspecialidades { get; set; }
+
         //public DbSet<ProfissionalEspecialidade> ProfissionalEspecialidade { get; set; }
 
         //difinindo os requisitos de cada campo da entidade agendamento

@@ -3,6 +3,7 @@ using ProjectDoctor.Context;
 using ProjectDoctor.Models.Dtos;
 using ProjectDoctor.Models.Entities;
 using ProjectDoctor.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace ProjectDoctor.Repository
         public async Task<IEnumerable<EspecialidadeDto>> GetEspecialidades()
         {
             return await _context.Especialidades
-                .Select(x => new EspecialidadeDto {Id = x.Id, Nome = x.Nome, Ativa = x.Ativa})
+                .Select(x => new EspecialidadeDto { Id = x.Id, Nome = x.Nome, Ativa = x.Ativa })
                 .ToListAsync();
         }
 

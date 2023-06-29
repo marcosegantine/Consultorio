@@ -98,5 +98,32 @@ namespace ProjectDoctor.Controllers
 
         }
 
+        [HttpPost("adicionar-especialidade")]
+        public async Task<IActionResult> PostProfissionalEspecialidade(ProfissionalEspecialidadeAdicionarDto profissional)
+        {
+            int profissionalId = profissional.ProfissionalId;
+            int especialidadeId = profissional.EspecialidadeId;
+
+            if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
+
+            var profissionalEspecialidade = _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
+
+            if (profissionalEspecialidade != null) return Ok("Especialidade já cadastrada");
+
+            var especialidadeAdicionar = new ProfissionalEspecialidade
+            {
+                EspecialidadeId = especialidadeId,
+                ProfissionalId = profissionalId
+            };
+
+            _repository.Add(especialidadeAdicionar);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Especialidade adicionada")
+                : BadRequest("Erro ao adicionar especialidade");
+
+
+        }
+
     }
 }
