@@ -79,8 +79,8 @@ namespace ProjectDoctor.Controllers
             _repository.Update(especialidade);
 
             return await _repository.SaveChangesAsync()
-                ?Ok("Status atualizado")
-                :BadRequest("Erro ao atualizar status");
+                ? Ok("Status atualizado")
+                : BadRequest("Erro ao atualizar status");
         }
 
     }
