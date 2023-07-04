@@ -15,7 +15,6 @@ namespace ProjectDoctor.Context
         public DbSet<Profissional> Profissionals { get; set; }
         public DbSet<ProfissionalEspecialidade> ProfissionaisEspecialidades { get; set; }
 
-        //public DbSet<ProfissionalEspecialidade> ProfissionalEspecialidade { get; set; }
 
         //difinindo os requisitos de cada campo da entidade agendamento
         protected override void OnModelCreating(ModelBuilder modelBuilder)

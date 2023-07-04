@@ -106,7 +106,7 @@ namespace ProjectDoctor.Controllers
 
             if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
 
-            var profissionalEspecialidade = _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
+            var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
 
             if (profissionalEspecialidade != null) return Ok("Especialidade já cadastrada");
 
@@ -121,9 +121,24 @@ namespace ProjectDoctor.Controllers
             return await _repository.SaveChangesAsync()
                 ? Ok("Especialidade adicionada")
                 : BadRequest("Erro ao adicionar especialidade");
-
-
         }
+
+        [HttpDelete("{profissionalId}/deletar-especialidade/{especialidadeId}")]
+        public async Task<IActionResult> DeleteProfissionalEspecialidade(int profissionalId, int especialidadeId)
+        {
+            if (profissionalId <= 0 || especialidadeId <= 0) return BadRequest("Dados inválidos");
+
+            var profissionalEspecialidade = await _repository.GetProfissionalEspecialidade(profissionalId, especialidadeId);
+
+            if (profissionalEspecialidade == null) return NotFound("Especialidade não cadastrada");
+
+            _repository.Delete(profissionalEspecialidade);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Especialidade deletada com sucesso")
+                : BadRequest("Erro ao deletar especialidade");
+        }
+
 
     }
 }
