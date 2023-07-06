@@ -41,7 +41,7 @@ namespace ProjectDoctor.Controllers
         {
             var paciente = await _repository.GetPacientesByIdAsync(id);
 
-            var retornoPaciente = _mapper.Map<PacienteDetailsDto>(paciente);
+            var retornoPaciente = _mapper.Map<PacienteDetalhesDto>(paciente);
 
             return retornoPaciente != null
                 ? Ok(retornoPaciente)
